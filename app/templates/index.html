@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+<!-- Erweitert das 'base.html'-Template, das die allgemeine Struktur der Webseite enthält -->
+
+{% block app_content %}
+<!-- Beginnt den 'app_content'-Block, um den spezifischen Inhalt für diese Seite zu definieren -->
+
+    <h1>Willkommen {{ current_user.username}}!</h1>
+    <!-- Begrüssung des aktuell angemeldeten Benutzers mit seinem Benutzernamen (dynamisch eingefügt durch `current_user.username`) -->
+
+    <br>
+    <!-- Zeilenumbruch, um einen kleinen Abstand zwischen der Überschrift und dem folgenden Text zu schaffen -->
+
+    <p>
+        Auf dieser Seite kannst du das Wissen deiner Studierenden auf die Probe stellen, 
+        indem du ein Quiz organisierst. Erstelle dein Quiz noch heute!
+        <!-- Beschreibung, die dem Benutzer erklärt, dass er auf dieser Seite Quizze erstellen kann, 
+             um das Wissen seiner Studierenden zu testen -->
+    </p>
+
+    <p>
+        <img src="{{ url_for('static', filename='QUIZ.webp') }}" width="500" height="500">
+        <!-- Fügt ein Bild auf der Seite ein. Das Bild wird über die `url_for`-Funktion aus dem `static`-Ordner geladen
+             und hat die Dateiname 'QUIZ.webp'. Es wird mit einer festen Breite und Höhe von 500x500 Pixeln angezeigt. -->
+    </p>
+
+{% endblock %}
+<!-- Schliesst den 'app_content'-Block ab -->

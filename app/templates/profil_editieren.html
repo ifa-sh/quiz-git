@@ -1,0 +1,37 @@
+{% extends "base.html" %}
+<!-- Erweitert das 'base.html'-Template, das die allgemeine Struktur der Webseite enthält -->
+
+{% import 'bootstrap/wtf.html' as wtf %}
+<!-- Importiert das Bootstrap-WTF-Template, das für das Styling und die Darstellung von Flask-WTF-Formularen optimiert ist,
+     und gibt ihm den Alias 'wtf' -->
+
+{% block app_content %}
+<!-- Beginnt den 'app_content'-Block, um den spezifischen Inhalt für diese Seite zu definieren -->
+
+    <h1>Du hast die Möglichkeit, deine Profildaten zu bearbeiten.</h1>
+    <!-- Hauptüberschrift der Seite, die dem Benutzer erklärt, dass er seine Profildaten bearbeiten kann -->
+
+    <br>
+    <!-- Zeilenumbruch, um einen Abstand zwischen der Hauptüberschrift und dem Formular zu schaffen -->
+
+    <h2>Profil editieren</h2>
+    <!-- Zweite Überschrift, die den Abschnitt des Formulars zum Bearbeiten des Profils kennzeichnet -->
+
+    <div class="row">
+        <!-- Erstellt eine neue Zeile für das Rasterlayout mit Bootstrap -->
+        
+        <div class="col-md-4">
+            <!-- Definiert eine 4-Spalten-Breite auf mittelgrossen Bildschirmen für das Formular -->
+
+            {{ wtf.quick_form(form) }}
+            <!-- Rendert das übergebene Formular 'form' mit der 'quick_form'-Methode aus dem Bootstrap-WTF-Template.
+                 Die 'quick_form'-Methode sorgt dafür, dass alle Formularfelder automatisch im Bootstrap-Stil dargestellt werden.
+                 Das Formular enthält alle Felder, die der Benutzer ausfüllen muss, um sein Profil zu bearbeiten. -->
+        </div>
+    </div>
+
+    <hr style="border: 3px solid black;">
+    <!-- Fügt eine schwarze, 3 Pixel dicke Trennlinie unter dem Formular ein, um den Inhalt visuell zu trennen -->
+
+{% endblock %}
+<!-- Schliesst den 'app_content'-Block ab -->

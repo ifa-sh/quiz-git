@@ -1,0 +1,33 @@
+{% extends "base.html" %}
+<!-- Erweitert das 'base.html'-Template, das die allgemeine Struktur und das Layout der Webseite enthält -->
+
+{% import 'bootstrap/wtf.html' as wtf %}
+<!-- Importiert das Bootstrap-WTF-Template, das für das Styling und die Darstellung von Flask-WTF-Formularen optimiert ist, und gibt ihm den Alias 'wtf' -->
+
+{% block app_content %}
+<!-- Beginnt ein Block, der den Inhalt des 'app_content'-Abschnitts im 'base.html'-Template überschreibt oder ergänzt -->
+
+    <h1>Neues Quiz erfassen</h1>
+    <!-- Überschrift für die Seite, die den Zweck der Seite erklärt (Erfassung eines neuen Quiz) -->
+
+    <br>
+    <!-- Fügt einen Zeilenumbruch ein, um einen kleinen Abstand zwischen der Überschrift und dem Formular zu schaffen -->
+
+    <div class="row">
+        <!-- Erstellt eine neue Zeile für das Rasterlayout mit Bootstrap -->
+
+        <div class="col-md-4">
+            <!-- Definiert eine 4-Spalten-Breite auf mittelgrossen Bildschirmen für das Formular -->
+            
+            {{ wtf.quick_form(form) }}
+            <!-- Rendert das übergebene Formular 'form' mit der 'quick_form'-Methode aus dem Bootstrap-WTF-Template.
+                 Die 'quick_form'-Methode sorgt dafür, dass das gesamte Formular automatisch im Bootstrap-Stil dargestellt wird.
+                 Dies erleichtert das Styling und die Layout-Anpassungen. -->
+        </div>
+    </div>
+
+    <hr style="border: 3px solid black;">
+    <!-- Ein horizontaler Strich (HR) mit einer 3px dicken, schwarzen Linie als visuelle Trennung unter dem Formular -->
+
+{% endblock %}
+<!-- Schliesst den 'app_content'-Block ab -->

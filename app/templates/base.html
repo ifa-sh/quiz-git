@@ -1,0 +1,91 @@
+<!-- Das Haupttemplate, das in allen anderen Templates eingebunden wird -->
+<!-- 'base.html' ist das zentrale Layout für die Webseite, das alle anderen Seiten erweitern können -->
+
+{% extends "bootstrap/base.html" %}
+<!-- Erweitert das Bootstrap-Basistemplate, um Bootstrap-Styling und -Funktionalität zu nutzen -->
+
+{% block title %}
+    {% if title %}{{ title }} - ETH - Quiz
+    {% endif %}
+<!-- Block für den Seitentitel. Wenn ein 'title'-Wert übergeben wird, wird er angezeigt,
+     gefolgt von " - ETH - Quiz". Dieser Titel erscheint im Browser-Tab. -->
+{% endblock title %}
+
+{% block navbar %}
+<!-- Block für die Navigationsleiste, die die Hauptnavigation der Webseite enthält -->
+    <nav class="navbar navbar-inverse">
+        <!-- Verwendet eine inverse (dunkle) Bootstrap-Navigationsleiste -->
+        <div class="container">
+            <!-- Container sorgt für zentrierten und responsiven Inhalt -->
+            
+            <div class="navbar-header">
+                <!-- Header-Bereich der Navigationsleiste, der das Branding und den Toggle-Button für mobile Geräte enthält -->
+                <button type="button" class="navbar-toggle collapsed"
+                data-toggle="collapse"
+                data-target="#bs-example-navbar-collapse-1"
+                aria-expanded="false">
+                    <!-- Toggle-Button für die mobile Ansicht, der bei kleiner Bildschirmbreite angezeigt wird -->
+                    <span class="sr-only">Toggle navigation</span>
+                    <!-- Screenreader-Text für bessere Barrierefreiheit -->
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <!-- Drei horizontale Linien, die den Toggle-Button darstellen -->
+                </button>
+            <a class="navbar-brand" href="{{ url_for('index') }}">Quiz</a>
+            <!-- Das Branding der Seite, das als Link zur Startseite dient -->
+            </div>
+
+            <div class="collapse navbar-collapse"
+            id="bs-example-navbar-collapse-1">
+                <!-- Der collapsible Teil der Navigation, der in der mobilen Ansicht ausgeklappt wird -->
+                <ul class="nav navbar-nav">
+                    <!-- Ungeordnete Liste für die Navigationslinks -->
+                    <li><a href="{{ url_for('index') }}">Start</a></li>
+                    <!-- Link zur Startseite -->
+                    
+                    {% if current_user.is_anonymous %}
+                    <!-- Zeigt diese Links nur an, wenn der Benutzer nicht angemeldet ist (anonym) -->
+                    <li><a href="{{ url_for('registrieren') }}">Registrierung</a></li>
+                    <!-- Link zur Registrierungsseite -->
+                    {% endif %}
+                    
+                    {% if current_user.is_authenticated %}
+                    <!-- Zeigt diese Links nur an, wenn der Benutzer authentifiziert (angemeldet) ist -->
+                    <li><a href="{{ url_for('spiele_anzeigen') }}">Alle Quiz</a></li>
+                    <!-- Link zur Seite, auf der alle Quizze angezeigt werden -->
+                    <li><a href="{{ url_for('spiele_erfassen') }}">Neues Quiz</a></li>
+                    <!-- Link zur Seite, auf der ein neues Quiz erstellt werden kann -->
+                    <li><a href="{{ url_for('user', username=current_user.username) }}">Profil anzeigen</a></li>
+                    <!-- Link zur Profilseite des aktuellen Benutzers -->
+                    <li><a href="{{ url_for('profil_editieren') }}">Profil editieren</a></li>
+                    <!-- Link zur Seite, auf der der Benutzer sein Profil bearbeiten kann -->
+                    <li><a href="{{ url_for('logout') }}">Logout</a></li>
+                    <!-- Link zum Ausloggen -->
+                    {% endif %}
+                </ul>
+            </div>
+        </div>
+    </nav>
+{% endblock navbar %}
+<!-- Ende des Navbar-Blocks -->
+
+{% block content %}
+<!-- Block für den Hauptinhalt der Seite -->
+    <div class="container">
+        <!-- Container, der den Inhalt zentriert und für responsives Design sorgt -->
+        {% with messages = get_flashed_messages() %}
+        {% if messages %}
+            <!-- Überprüft, ob Flash-Nachrichten existieren (z.B. nach einer Anmeldung oder einem Fehler) -->
+            {% for message in messages %}
+            <div class="alert alert-info" role="alert">{{ message }}</div>
+            <!-- Zeigt jede Flash-Nachricht in einer Bootstrap-Info-Alert-Box an -->
+            {% endfor %}
+        {% endif %}
+        {% endwith %}
+        {% block app_content %}{% endblock %}
+        <!-- Block für den spezifischen Seiteninhalt, der in anderen Templates überschrieben wird -->
+    </div>
+{% endblock content %}
+<!-- Ende des Content-Blocks -->
+

@@ -1,0 +1,4 @@
+# Ausschluss von Cache- und Migrationsdateien
+__pycache__/
+migrations/
+venv/

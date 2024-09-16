@@ -1,0 +1,45 @@
+{% extends "base.html" %}
+<!-- Erweitert das 'base.html'-Template, das die allgemeine Struktur der Webseite enthält -->
+
+{% import 'bootstrap/wtf.html' as wtf %}
+<!-- Importiert das Bootstrap-WTF-Template, das für das Styling und die Darstellung von Flask-WTF-Formularen optimiert ist,
+     und gibt ihm den Alias 'wtf' -->
+
+{% block app_content %}
+<!-- Beginnt den 'app_content'-Block, um den spezifischen Inhalt für diese Seite zu definieren -->
+
+    <h1>Willkommen auf der QUIZ Seite.</h1>
+    <!-- Begrüssungsüberschrift, die den Nutzer auf der Webseite willkommen heisst -->
+
+    <p>
+        Bitte Benutzername und Passwort eingeben oder, wenn Sie noch kein Konto haben, 
+        hier registrieren: 
+        <a href="{{ url_for('registrieren') }}">Registrieren</a>.
+        <!-- Erläuterung, dass der Benutzer seinen Benutzernamen und das Passwort eingeben soll,
+             sowie ein Link zur Registrierungsseite für neue Benutzer -->
+    </p>
+
+    <br>
+    <!-- Zeilenumbruch, um etwas Abstand zwischen dem Text und dem Formular zu schaffen -->
+
+    <h2>Login</h2>
+    <!-- Zweite Überschrift, die den Login-Abschnitt der Seite markiert -->
+
+    <div class="row">
+        <!-- Erstellt eine neue Zeile für das Rasterlayout mit Bootstrap -->
+        
+        <div class="col-md-4">
+            <!-- Definiert eine 4-Spalten-Breite auf mittelgrossen Bildschirmen für das Login-Formular -->
+
+            {{ wtf.quick_form(form) }}
+            <!-- Rendert das übergebene Formular 'form' mit der 'quick_form'-Methode aus dem Bootstrap-WTF-Template.
+                 Diese Methode sorgt dafür, dass das gesamte Formular automatisch im Bootstrap-Stil dargestellt wird.
+                 Der Benutzer wird aufgefordert, seinen Benutzernamen und sein Passwort einzugeben. -->
+        </div>
+    </div>
+
+    <hr style="border: 3px solid black;">
+    <!-- Fügt eine schwarze, 3 Pixel dicke Trennlinie unter dem Formular ein, um den Inhalt visuell zu trennen -->
+
+{% endblock %}
+<!-- Schliesst den 'app_content'-Block ab -->

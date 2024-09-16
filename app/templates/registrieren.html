@@ -1,0 +1,33 @@
+{% extends "base.html" %}
+<!-- Erweitert das 'base.html' Template, das die allgemeine Struktur der Webseite enthält -->
+
+{% import 'bootstrap/wtf.html' as wtf %}
+<!-- Importiert ein Bootstrap-Template, das speziell für Flask-WTF Formulare optimiert ist, und benennt es als 'wtf' -->
+
+{% block app_content %}
+<!-- Beginnt ein Block, der den 'app_content'-Abschnitt des 'base.html' überschreibt oder ergänzt -->
+
+    <h1>Bitte vervollständige das untenstehende Formular!</h1>
+    <!-- Überschrift für die Seite -->
+
+    <br>
+    <p></p>
+    <!-- Leere Abstände durch <br> und <p> Tag, um Platz zu schaffen -->
+
+    <div class="row">
+        <!-- Bootstrap-Raster, um die Inhalte in einer Reihe zu organisieren -->
+        
+        <div class="col-md-4">
+            <!-- Verwendet eine 4-Spalten-Breite auf mittelgrossen Bildschirmen -->
+            
+            {{ wtf.quick_form(form) }}
+            <!-- Rendert das übergebene Formular mit der 'quick_form'-Methode aus dem Bootstrap-WTF Template.
+                 Diese Methode sorgt dafür, dass das Formular automatisch im Bootstrap-Stil dargestellt wird. -->
+        </div>
+    </div>
+
+    <hr style="border: 3px solid black;">
+    <!-- Ein horizontaler Strich (HR) zur optischen Trennung, mit einer 3px dicken, schwarzen Linie -->
+    
+{% endblock %}
+<!-- Schliesst den 'app_content'-Block ab -->

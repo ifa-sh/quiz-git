@@ -1,0 +1,55 @@
+{% extends "base.html" %}
+<!-- Erweitert das 'base.html'-Template, das die allgemeine Struktur der Webseite enthält -->
+
+{% block app_content %}
+<!-- Beginnt den 'app_content'-Block, um den spezifischen Inhalt für diese Seite zu definieren -->
+
+    <h1>Das Profil von {{ user.username }}</h1>
+    <!-- Überschrift, die den Benutzernamen des aktuellen Nutzers dynamisch anzeigt -->
+
+    <br>
+    <!-- Zeilenumbruch, um einen Abstand zwischen der Überschrift und dem folgenden Text zu schaffen -->
+
+    <p>Deine Daten</p>
+    <!-- Ein kurzer Textabschnitt, der den Benutzer darauf hinweist, dass seine Profildaten unten angezeigt werden -->
+
+    <br>
+    <!-- Ein weiterer Zeilenumbruch, um etwas Abstand zu schaffen -->
+
+    <table class="table table-striped table-sm table-bordered table-hover">
+        <!-- Definiert eine Tabelle mit Bootstrap-Klassen für Styling:
+             - 'table': Standard-Styling für Tabellen
+             - 'table-striped': Abwechselnde Hintergrundfarben für die Zeilen
+             - 'table-sm': Kompakte Tabelle
+             - 'table-bordered': Fügt Ränder zu den Zellen hinzu
+             - 'table-hover': Hebt Zeilen hervor, wenn man mit der Maus darüber fährt -->
+
+        <tr>
+            <th> Username: </th>
+            <!-- Definiert die Kopfzeile für den Benutzernamen -->
+            <td> {{ user.username }} </td>
+            <!-- Zeigt den Benutzernamen des aktuellen Nutzers an -->
+        </tr>
+        
+        <tr>
+            <th> Email: </th>
+            <!-- Definiert die Kopfzeile für die E-Mail-Adresse -->
+            <td> {{ user.email }} </td>
+            <!-- Zeigt die E-Mail-Adresse des aktuellen Nutzers an -->
+        </tr>
+        
+        <tr>
+            <th> Lieblingsquiz: </th>
+            <!-- Definiert die Kopfzeile für das Lieblingsquiz -->
+            <td> {{ user.lieblingsspiel.spielname if user.lieblingsspiel else 'Kein Lieblingsquiz gewählt' }} </td>
+            <!-- Zeigt das Lieblingsquiz des Nutzers an, falls eines gewählt wurde.
+                 Wenn der Nutzer kein Lieblingsquiz gewählt hat, wird die Nachricht 'Kein Lieblingsquiz gewählt' angezeigt -->
+        </tr>
+    </table>
+    <!-- Schliesst die Tabelle ab -->
+
+    <hr style="border: 3px solid black;">
+    <!-- Fügt eine schwarze, 3 Pixel dicke Trennlinie unter der Tabelle ein, um den Inhalt visuell zu trennen -->
+
+{% endblock %}
+<!-- Schliesst den 'app_content'-Block ab -->
